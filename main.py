@@ -84,32 +84,32 @@ allClasses = fid.readlines()
 directory =  os.path.join('..','images')
 
 
-for filename in os.listdir(directory):
-    if filename.endswith(".jpg") or filename.endswith(".png"):
+# for filename in os.listdir(directory):
+#     if filename.endswith(".jpg") or filename.endswith(".png"):
 
 
-        fileName = os.path.join(directory , filename)
+#         fileName = os.path.join(directory , filename)
 
-        _I = PIL.Image.open(fileName)
+#         _I = PIL.Image.open(fileName)
 
-        I = preprocess(_I)
+#         I = preprocess(_I)
 
-        _p, _classes = recognize(I, allClasses, model)
+#         _p, _classes = recognize(I, allClasses, model)
 
-        strFeatures = stringfy(_p, _classes)
+#         strFeatures = stringfy(_p, _classes)
 
 
-        plt.figure()
+#         plt.figure()
 
-        plt.subplot(1,2,1)
-        plt.imshow((1+I.reshape(224,224,3))/2)
+#         plt.subplot(1,2,1)
+#         plt.imshow((1+I.reshape(224,224,3))/2)
         
-        plt.subplot(1,2,2)
-        plt.text(0.1,0.3, strFeatures )
-        plt.axis('off')
+#         plt.subplot(1,2,2)
+#         plt.text(0.1,0.3, strFeatures )
+#         plt.axis('off')
         
-        print( fileName )
-        print(strFeatures )
+#         print( fileName )
+#         print(strFeatures )
         
     
     
@@ -122,13 +122,24 @@ while 1:
     _I = PIL.Image.fromarray(frame)
     
     I = preprocess(_I)
-    
-    plt.cla()
-    plt.imshow((1.0+I).reshape((224,224,3))/2.0)
-    plt.pause(0.001)
+
+       
 
     _p, _classes = recognize(I, allClasses, model)
 
     strFeatures = stringfy(_p, _classes)
 
-    print(strFeatures)
+ 
+    plt.subplot(1,2,1)
+    plt.cla()
+    plt.imshow((1.0+I).reshape((224,224,3))/2.0)
+    plt.axis('off')
+    
+    plt.subplot(1,2,2)
+    plt.cla()
+    plt.text(0.1,0.3, strFeatures )
+    plt.axis('off')
+
+    plt.pause(0.001)
+
+
